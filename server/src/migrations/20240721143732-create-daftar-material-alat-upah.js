@@ -18,26 +18,30 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      satuan_id: {
+      // satuan_id: {
+      //   type: Sequelize.STRING(5),
+      //   allowNull: true,
+      //   references: {
+      //     model: 'satuan',
+      //     key: 'satuan_id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL'
+      // },
+      satuan: {
         type: Sequelize.STRING(5),
-        allowNull: false,
-        references: {
-          model: 'satuan',
-          key: 'satuan_id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        allowNull: true,
       },
       harga: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      lokasi: {
+      area: {
         type: Sequelize.TEXT,
         allowNull: true,
       },
       bulan_tahun: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: true
       },
       createdAt: {
