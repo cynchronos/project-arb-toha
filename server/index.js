@@ -1,4 +1,4 @@
-require('./config/database.json');
+require('./config/config.json');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -37,6 +37,6 @@ app.use((req, res) => {
 });
 
 // Server listener
-const server = app.listen(serverPort, serverHost, () => {
+app.listen(serverPort, serverHost, () => {
   console.log(`Server running at http://${serverHost}:${serverPort}`);
 })
