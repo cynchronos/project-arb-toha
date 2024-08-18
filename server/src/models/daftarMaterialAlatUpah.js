@@ -20,13 +20,13 @@ module.exports = (sequelize, DataTypes) => {
         onDelete : 'CASCADE'
       });
 
-      DaftarMaterialAlatUpah.belongsTo(models.Satuan, {
-        foreignKey: 'satuan_id',
-        targetKey: 'satuan_id',
-        as: 'satuan',
-        onUpdate : 'CASCADE',
-        onDelete : 'CASCADE'
-      });
+      // DaftarMaterialAlatUpah.belongsTo(models.Satuan, {
+      //   foreignKey: 'satuan_id',
+      //   targetKey: 'satuan_id',
+      //   as: 'satuan',
+      //   onUpdate : 'CASCADE',
+      //   onDelete : 'CASCADE'
+      // });
     }
   }
   DaftarMaterialAlatUpah.init({
@@ -35,10 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     material_id: DataTypes.STRING(5),
-    satuan_id: DataTypes.STRING(5),
+    satuan: DataTypes.STRING(5),
     harga: DataTypes.INTEGER,
-    lokasi: DataTypes.TEXT,
-    bulan_tahun: DataTypes.DATE
+    area: DataTypes.TEXT,
+    bulan_tahun: DataTypes.DATEONLY,
   }, {
     sequelize,
     modelName: 'DaftarMaterialAlatUpah',
