@@ -1,4 +1,4 @@
-require('../../config/database.json');
+require('../../config/config.json');
 const { KategoriMaterialAlatUpah } = require('../models');
 
 async function getAllKategori() {
