@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ui/pages/material_alat_upah_page.dart';
+import 'package:ui/pages/base_page.dart';
+import 'package:ui/providers/delete_provider.dart';
+import 'package:ui/providers/kategori_provider.dart';
+import 'package:ui/providers/material_dropdown_provider.dart';
 import 'package:ui/providers/material_provider.dart';
+import 'package:ui/providers/pages_provider.dart';
+import 'package:ui/providers/sub_kategori_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => MaterialProvider())
+        ChangeNotifierProvider(create: (context) => MaterialProvider()),
+        ChangeNotifierProvider(create: (context) => KategoriProvider()),
+        ChangeNotifierProvider(create: (context) => SubKategoriProvider()),
+        ChangeNotifierProvider(create: (context) => PagesProvider()),
+        ChangeNotifierProvider(create: (context) => DeleteProvider()),
+        ChangeNotifierProvider(create: (context) => MaterialDropdownProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -23,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MaterialAlatUpahPage(),
+        home: const BasePage(),
       ),
     );
   }

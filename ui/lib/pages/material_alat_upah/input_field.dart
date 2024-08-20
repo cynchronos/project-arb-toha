@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 
 class MaterialInputField extends StatelessWidget {
   final String label;
-  final  TextEditingController controller;
+  final TextEditingController controller;
+  final String hintText;
 
-  const MaterialInputField({super.key, required this.label, required this.controller});
+  const MaterialInputField(
+      {super.key,
+      required this.label,
+      required this.controller,
+      required this.hintText});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,14 +28,14 @@ class MaterialInputField extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 36,
             child: TextFormField(
               controller: controller,
-              decoration: const InputDecoration(
-                  hintText: 'nama material',
-                  enabledBorder: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder()),
+              decoration: InputDecoration(
+                  hintText: hintText,
+                  enabledBorder: const OutlineInputBorder(),
+                  focusedBorder: const OutlineInputBorder()),
             ),
           )
         ],

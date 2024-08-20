@@ -15,27 +15,9 @@ class _MaterialAlatUpahPageState extends State<MaterialAlatUpahPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Row(
-        children: <Widget>[
-          const Flexible(
-            flex: 1,
-            child: Sidebar(),
-          ),
-          const SizedBox(width: 12),
-          Flexible(
-            flex: 4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MaterialForm(),
-                const SearchWidget(),
-                Materialtable(),
-              ],
-            ),
-          ),
-        ],
-      )),
-    );
+        body: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [MaterialForm(), const SearchWidget(), const Materialtable()],
+    ));
   }
 }

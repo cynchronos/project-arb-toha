@@ -55,6 +55,7 @@ exports.fetchAllKategoriMaterialAlatUpah = async (req, res) => {
     const { query } = req.query;
 
     const kategoriData = await getAllKategori(query);
+    // console.log(kategoriData)
 
     await validateGetKategori(kategoriData);
 

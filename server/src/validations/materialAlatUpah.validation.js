@@ -110,7 +110,8 @@ async function validateDaftarMaterialAlatUpahInfo(req, res, next) {
 //! Kategori Material Alat Upah
 async function validateGetKategori(categoryData) {
   try {
-    if (!categoryData || !categoryData.length == 0) {
+    // console.log(categoryData.length)
+    if (!categoryData || categoryData.length == 0) {
       const errors = {
         success: false,
         code: 404,
