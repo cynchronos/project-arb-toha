@@ -25,7 +25,7 @@ class _SubKategoritableState extends State<SubKategoritable> {
   Widget build(BuildContext context) {
     final subCategories = context.watch<SubKategoriProvider>().subCategories;
     return Container(
-        width: 640,
+        width: 960,
         // margin: const EdgeInsets.only(right: 20, bottom: 20),
         decoration: BoxDecoration(
           color: const Color(0xFFFFFFFF),
@@ -67,6 +67,17 @@ class _SubKategoritableState extends State<SubKategoritable> {
                             alignment: Alignment.center,
                             child: Text(
                               'sub-kategori',
+                              style: TextStyle(color: Color(0xFFECEFF4)),
+                            )),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: Container(
+                        child: const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'nama sub-kategori',
                               style: TextStyle(color: Color(0xFFECEFF4)),
                             )),
                       ),
@@ -121,7 +132,16 @@ class _SubKategoritableState extends State<SubKategoritable> {
                               child: Container(
                                 child: Align(
                                   alignment: Alignment.center,
-                                  child: Text(currentItem.subCategoryName),
+                                  child: Text(currentItem.categoryName),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(currentItem.subCatName),
                                 ),
                               ),
                             ),

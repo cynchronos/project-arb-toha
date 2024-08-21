@@ -78,7 +78,8 @@ class _SubKategoriState extends State<SubKategoriForm> {
                         //   ScaffoldMessenger.of(context).showSnackBar(
                         //       const SnackBar(content: Text('processing')));
                         // }
-                        // addSubcat(categoryID, subKategoriController)
+                        addSubcat(subKategoriIDController.text,
+                            subKategoriController.text);
                       },
                       label: const Text('add item'),
                       style: ElevatedButton.styleFrom(
