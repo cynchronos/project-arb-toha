@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:ui/domain/kategori/add_kategori.dart';
 
 class KategoriForm extends StatefulWidget {
   KategoriForm({super.key});
@@ -13,37 +14,6 @@ class _KategoriState extends State<KategoriForm> {
   final _materialFormKey = GlobalKey<FormState>();
 
   final TextEditingController kategoriController = TextEditingController();
-
-  final TextEditingController namaController = TextEditingController();
-
-  final TextEditingController satuanController = TextEditingController();
-
-  final TextEditingController hargaController = TextEditingController();
-
-  final TextEditingController areaController = TextEditingController();
-
-  final TextEditingController keteranganController = TextEditingController();
-
-  Future submitMaterialForm() async {
-    final url = Uri.parse(
-        'http://127.0.0.1:3000/api/material-alat-dan-upah/list-material/');
-    final response = await http.post(url,
-        headers: {'content-type': 'application/json; charset=UTF-8'},
-        body: jsonEncode({
-          'material_id': 'AAGF',
-          'satuan': 'm3',
-          'harga': 3000,
-          'area': 'palu',
-          'bulan_tahun': '2024-06-12'
-        }));
-
-    if (response.statusCode == 201) {
-      print('Material added successfully');
-    }
-
-    print('Error adding material');
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -95,11 +65,7 @@ class _KategoriState extends State<KategoriForm> {
                     width: 128,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        // if (_materialFormKey.currentState!.validate()) {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //       const SnackBar(content: Text('processing')));
-                        // }
-                        submitMaterialForm();
+                        addKategori(kategoriController.text);
                       },
                       label: const Text('add item'),
                       style: ElevatedButton.styleFrom(

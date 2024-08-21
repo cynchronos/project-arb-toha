@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:ui/domain/subcat/add_subcat.dart';
 import 'package:ui/pages/material_alat_upah/material_input_field.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,37 +15,7 @@ class SubKategoriForm extends StatefulWidget {
 class _SubKategoriState extends State<SubKategoriForm> {
   final _materialFormKey = GlobalKey<FormState>();
 
-  final TextEditingController kategoriController = TextEditingController();
-
-  final TextEditingController namaController = TextEditingController();
-
-  final TextEditingController satuanController = TextEditingController();
-
-  final TextEditingController hargaController = TextEditingController();
-
-  final TextEditingController areaController = TextEditingController();
-
-  final TextEditingController keteranganController = TextEditingController();
-
-  Future submitMaterialForm() async {
-    final url = Uri.parse(
-        'http://127.0.0.1:3000/api/material-alat-dan-upah/list-material/');
-    final response = await http.post(url,
-        headers: {'content-type': 'application/json; charset=UTF-8'},
-        body: jsonEncode({
-          'material_id': 'AAGF',
-          'satuan': 'm3',
-          'harga': 3000,
-          'area': 'palu',
-          'bulan_tahun': '2024-06-12'
-        }));
-
-    if (response.statusCode == 201) {
-      print('Material added successfully');
-    }
-
-    print('Error adding material');
-  }
+  final TextEditingController subKategoriController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +32,7 @@ class _SubKategoriState extends State<SubKategoriForm> {
                     const Padding(
                       padding: EdgeInsets.only(bottom: 6),
                       child: Text(
-                        'Kategori ID',
+                        'pilih jenis kategori',
                         style: TextStyle(
                           color: Color(0xFF2E3440),
                           fontSize: 16,
@@ -72,7 +43,7 @@ class _SubKategoriState extends State<SubKategoriForm> {
                     SizedBox(
                       height: 36,
                       child: TextFormField(
-                        controller: kategoriController,
+                        controller: subKategoriController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -90,7 +61,7 @@ class _SubKategoriState extends State<SubKategoriForm> {
               ),
               MaterialInputField(
                 label: 'nama sub-kategori',
-                controller: namaController,
+                controller: subKategoriController,
                 hintText: 'sub kategori',
               ),
               Align(
@@ -106,7 +77,7 @@ class _SubKategoriState extends State<SubKategoriForm> {
                         //   ScaffoldMessenger.of(context).showSnackBar(
                         //       const SnackBar(content: Text('processing')));
                         // }
-                        submitMaterialForm();
+                        // addSubcat(categoryID, subKategoriController)
                       },
                       label: const Text('add item'),
                       style: ElevatedButton.styleFrom(
