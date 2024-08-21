@@ -74,6 +74,16 @@ class _MaterialtableState extends State<Materialtable> {
                             style: TextStyle(color: Color(0xFFECEFF4)),
                           )),
                     )),
+                                    Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Kategori',
+                            style: TextStyle(color: Color(0xFFECEFF4)),
+                          )),
+                    )),
                 Expanded(
                     flex: 2,
                     child: Container(
@@ -163,6 +173,13 @@ class _MaterialtableState extends State<Materialtable> {
                                   child: Align(
                                       alignment: Alignment.center,
                                       child: Text(currentItem.materialName)),
+                                )),
+                                                            Expanded(
+                                flex: 2,
+                                child: Container(
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(currentItem.categoryName)),
                                 )),
                             Expanded(
                                 flex: 2,

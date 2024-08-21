@@ -18,6 +18,7 @@ Future getDaftarMaterial() async {
               listID: item['list_id'],
               materialID: item['material_id'],
               materialName: item['material_name'],
+              categoryName: item['category_name'],
               satuan: item['subcat_id'],
               harga: item['harga'].toString(),
               area: item['area'],

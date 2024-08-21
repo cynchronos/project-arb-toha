@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 class DaftarMaterial {
   String listID;
   String materialName;
+  String categoryName;
   String materialID;
   String satuan;
   String harga;
@@ -14,6 +15,7 @@ class DaftarMaterial {
   DaftarMaterial(
       {required this.listID,
       required this.materialName,
+      required this.categoryName,
       required this.materialID,
       required this.satuan,
       required this.harga,
@@ -63,6 +65,7 @@ class MaterialProvider extends ChangeNotifier {
                 listID: item['list_id'],
                 materialID: item['material_id'],
                 materialName: item['material_name'],
+                categoryName: item['category_name'],
                 satuan: item['subcat_id'],
                 harga: item['harga'].toString(),
                 area: item['area'],
