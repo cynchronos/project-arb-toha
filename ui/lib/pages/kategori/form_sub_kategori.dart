@@ -15,6 +15,7 @@ class SubKategoriForm extends StatefulWidget {
 class _SubKategoriState extends State<SubKategoriForm> {
   final _materialFormKey = GlobalKey<FormState>();
 
+  final TextEditingController subKategoriIDController = TextEditingController();
   final TextEditingController subKategoriController = TextEditingController();
 
   @override
@@ -43,7 +44,7 @@ class _SubKategoriState extends State<SubKategoriForm> {
                     SizedBox(
                       height: 36,
                       child: TextFormField(
-                        controller: subKategoriController,
+                        controller: subKategoriIDController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
