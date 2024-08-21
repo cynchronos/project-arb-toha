@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:ui/domain/material_alat_upah/src/delete_material.dart';
 import 'package:ui/providers/delete_provider.dart';
 
-Future dialogBuilder(BuildContext context) {
+Future deleteMaterialDialog(BuildContext context) {
   final deleteTarget =
-      Provider.of<DeleteProvider>(context, listen: false).target;
+      Provider.of<DeleteProvider>(context, listen: false).kategoriTarget;
   print(deleteTarget);
   return showDialog<void>(
     context: context,
@@ -19,7 +19,7 @@ Future dialogBuilder(BuildContext context) {
             ),
             child: const Text('Delete'),
             onPressed: () {
-              deleteMaterialData(deleteTarget);
+              deleteMaterial(deleteTarget);
               Navigator.of(context).pop();
             },
           ),

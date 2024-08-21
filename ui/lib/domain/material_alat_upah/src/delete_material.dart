@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
-Future deleteMaterialData(material) async {
-  print('running deleteMaterialData');
-  print(material);
+Future deleteMaterial(material) async {
+  // print('running deleteMaterialData');
+  // print(material);
   final url = Uri.parse(
       'http://127.0.0.1:3000/api/material-alat-dan-upah/list-material/$material');
 
@@ -14,5 +12,5 @@ Future deleteMaterialData(material) async {
     print('Material Deleted successfully');
   }
 
-  print('Error deleting material');
+  print(response.body);
 }

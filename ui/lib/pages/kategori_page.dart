@@ -18,7 +18,7 @@ class _kategoriPageState extends State<kategoriPage> {
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Flexible(
+        Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,13 +26,13 @@ class _kategoriPageState extends State<kategoriPage> {
             const SizedBox(
               height: 12,
             ),
-            const Kategoritable()
+            const Flexible(flex: 1, child: Kategoritable())
           ],
         )),
         const SizedBox(
           height: 12,
         ),
-        Flexible(
+        Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,7 +40,7 @@ class _kategoriPageState extends State<kategoriPage> {
             const SizedBox(
               height: 12,
             ),
-            const SubKategoritable()
+            const Flexible(flex: 1, child: SubKategoritable())
           ],
         ))
         // const Kategoritable()

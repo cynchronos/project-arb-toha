@@ -2,40 +2,66 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Material {
+class DaftarMaterial {
   String listID;
   String materialName;
+  String materialID;
   String satuan;
   String harga;
   String area;
   String keterangan;
 
-  Material(
+  DaftarMaterial(
       {required this.listID,
       required this.materialName,
+      required this.materialID,
       required this.satuan,
       required this.harga,
       required this.area,
       required this.keterangan});
 }
 
+class Material {
+  String categoryID;
+  String categoryName;
+  String subcatID;
+  String subCatName;
+  String materialID;
+  String materialName;
+
+  Material(
+      {required this.categoryID,
+      required this.categoryName,
+      required this.subcatID,
+      required this.subCatName,
+      required this.materialID,
+      required this.materialName});
+}
+
 class MaterialProvider extends ChangeNotifier {
-  List<Material> _materials = [];
+  List<DaftarMaterial> _daftarMaterials = [];
+  List<DaftarMaterial> get daftarMaterials => _daftarMaterials;
 
-  List<Material> get materials => _materials;
+  List<Material> _material = [];
+  List<Material> get material => _material;
 
-  Future fetchMaterialdata() async {
-    print('running fetchMaterialData');
+  var materialDeleteTarget = '';
+  var materialEditTarget = '';
+
+  Future getDaftarMaterial() async {
+    print('running getDaftarMaterials');
     final url = Uri.parse(
         'http://127.0.0.1:3000/api/material-alat-dan-upah/list-material?query=');
 
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
+      print("from getDaftarMaterial: success");
       final jsonData = json.decode(response.body);
-      final materials = (jsonData['data'] as List)
-          .map((item) => Material(
+      final result = (jsonData['data'] as List)
+          .map((item) => DaftarMaterial(
                 listID: item['list_id'],
+                materialID: item['material_id'],
                 materialName: item['material_name'],
                 satuan: item['subcat_id'],
                 harga: item['harga'].toString(),
@@ -43,10 +69,49 @@ class MaterialProvider extends ChangeNotifier {
                 keterangan: item['bulan_tahun'],
               ))
           .toList();
-      _materials = materials;
+      _daftarMaterials = result;
     } else {
-      throw Exception('Failed to load album');
+      throw Exception('Failed to load daftar material');
     }
     notifyListeners();
+  }
+
+  Future getMaterials() async {
+    print('running getMaterials');
+
+    final url = Uri.parse(
+        'http://127.0.0.1:3000/api/material-alat-dan-upah/material?query=');
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      final result = (jsonData['data'] as List)
+          .map((item) => Material(
+                categoryID: item['category_id'],
+                categoryName: item['category_name'],
+                subcatID: item['subcat_id'],
+                subCatName: item['subcat_name'],
+                materialID: item['material_id'],
+                materialName: item['material_name'],
+              ))
+          .toList();
+      _material = result;
+    } else {
+      throw Exception('Failed to load materials');
+    }
+    notifyListeners();
+  }
+
+  Future addMaterial() async {
+    print('running addMaterial');
+  }
+
+  Future editMaterial() async {
+    print('running editMaterial');
+  }
+
+  Future deleteMaterial() async {
+    print('running deleteMaterial');
   }
 }

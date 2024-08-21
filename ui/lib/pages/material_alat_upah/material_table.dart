@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/domain/material_alat_upah/src/delete_material.dart';
+import 'package:ui/domain/material_alat_upah/src/edit_material.dart';
+import 'package:ui/pages/material_alat_upah/material_input_field.dart';
 import 'package:ui/providers/material_provider.dart';
 
 class Materialtable extends StatefulWidget {
@@ -13,15 +15,20 @@ class Materialtable extends StatefulWidget {
 class _MaterialtableState extends State<Materialtable> {
   List materialContainer = [];
 
+  final TextEditingController satuanController = TextEditingController();
+  final TextEditingController hargaController = TextEditingController();
+  final TextEditingController areaController = TextEditingController();
+  final TextEditingController keteranganController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    context.read<MaterialProvider>().fetchMaterialdata();
+    context.read<MaterialProvider>().getDaftarMaterial();
   }
 
   @override
   Widget build(BuildContext context) {
-    final materials = context.watch<MaterialProvider>().materials;
+    final materials = context.watch<MaterialProvider>().daftarMaterials;
     return Expanded(
       child: Container(
         margin: const EdgeInsets.only(right: 20, bottom: 20),
@@ -194,6 +201,89 @@ class _MaterialtableState extends State<Materialtable> {
                                           onPressed: () {
                                             print(
                                                 'edit $index button is clicked');
+                                            showDialog<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      const Text('edit item'),
+                                                  content: Form(
+                                                      child: Column(
+                                                    children: [
+                                                      MaterialInputField(
+                                                          label: 'satuan',
+                                                          controller:
+                                                              satuanController,
+                                                          hintText:
+                                                              'edit satuan'),
+                                                      MaterialInputField(
+                                                          label: 'harga',
+                                                          controller:
+                                                              hargaController,
+                                                          hintText:
+                                                              'edit harga'),
+                                                      MaterialInputField(
+                                                          label: 'area',
+                                                          controller:
+                                                              areaController,
+                                                          hintText:
+                                                              'edit area'),
+                                                      MaterialInputField(
+                                                          label: 'keterangan',
+                                                          controller:
+                                                              keteranganController,
+                                                          hintText:
+                                                              'edit keterangan')
+                                                    ],
+                                                  )),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        textStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .labelLarge,
+                                                      ),
+                                                      child:
+                                                          const Text('Confirm'),
+                                                      onPressed: () {
+                                                        print(
+                                                            'tombol edit ditekan');
+                                                        editMaterial(
+                                                            currentItem.listID,
+                                                            currentItem
+                                                                .materialID,
+                                                            satuanController
+                                                                .text,
+                                                            hargaController
+                                                                .text,
+                                                            areaController.text,
+                                                            keteranganController
+                                                                .text);
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                    TextButton(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        textStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .labelLarge,
+                                                      ),
+                                                      child:
+                                                          const Text('Cancel'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
                                           },
                                           child: const Text('Edit')),
                                       TextButton(
@@ -218,7 +308,7 @@ class _MaterialtableState extends State<Materialtable> {
                                                       child:
                                                           const Text('Delete'),
                                                       onPressed: () {
-                                                        deleteMaterialData(
+                                                        deleteMaterial(
                                                             currentItem.listID);
                                                         Navigator.of(context)
                                                             .pop();
@@ -254,6 +344,10 @@ class _MaterialtableState extends State<Materialtable> {
                     })),
           )
         ]),
+      ),
+    );
+  }
+}
         // child: Column(
         //   children: [
         //     Container(
@@ -347,7 +441,3 @@ class _MaterialtableState extends State<Materialtable> {
         //     )
         //   ],
         // ),
-      ),
-    );
-  }
-}

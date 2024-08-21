@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ui/pages/material_alat_upah/form.dart';
+import 'package:ui/pages/material_alat_upah/material_form.dart';
 import 'package:ui/pages/material_alat_upah/material_table.dart';
-import 'package:ui/pages/material_alat_upah/search.dart';
-import 'package:ui/widgets/sidebar.dart';
+import 'package:ui/pages/material_alat_upah/material_search.dart';
 
 class MaterialAlatUpahPage extends StatefulWidget {
   const MaterialAlatUpahPage({super.key});
