@@ -23,7 +23,7 @@ class _MaterialtableState extends State<Materialtable> {
   @override
   void initState() {
     super.initState();
-    context.read<MaterialProvider>().getDaftarMaterial();
+    context.read<MaterialProvider>().getDaftarMaterialForTable();
   }
 
   @override
@@ -74,7 +74,7 @@ class _MaterialtableState extends State<Materialtable> {
                             style: TextStyle(color: Color(0xFFECEFF4)),
                           )),
                     )),
-                                    Expanded(
+                Expanded(
                     flex: 2,
                     child: Container(
                       child: const Align(
@@ -174,7 +174,7 @@ class _MaterialtableState extends State<Materialtable> {
                                       alignment: Alignment.center,
                                       child: Text(currentItem.materialName)),
                                 )),
-                                                            Expanded(
+                            Expanded(
                                 flex: 2,
                                 child: Container(
                                   child: Align(

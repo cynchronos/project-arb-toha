@@ -1,7 +1,26 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:ui/providers/material_provider.dart';
+class DaftarMaterial {
+  String listID;
+  String materialName;
+  String categoryName;
+  String materialID;
+  String satuan;
+  String harga;
+  String area;
+  String keterangan;
+
+  DaftarMaterial(
+      {required this.listID,
+      required this.materialName,
+      required this.categoryName,
+      required this.materialID,
+      required this.satuan,
+      required this.harga,
+      required this.area,
+      required this.keterangan});
+}
 
 Future getDaftarMaterial() async {
   print('running getDaftarMaterials');

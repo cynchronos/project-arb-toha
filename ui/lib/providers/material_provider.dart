@@ -50,7 +50,7 @@ class MaterialProvider extends ChangeNotifier {
   var materialDeleteTarget = '';
   var materialEditTarget = '';
 
-  Future getDaftarMaterial() async {
+  Future getDaftarMaterialForTable() async {
     print('running getDaftarMaterials');
     final url = Uri.parse(
         'http://127.0.0.1:3000/api/material-alat-dan-upah/list-material?query=');
@@ -72,6 +72,8 @@ class MaterialProvider extends ChangeNotifier {
                 keterangan: item['bulan_tahun'],
               ))
           .toList();
+      print(result);
+      print(result);
       _daftarMaterials = result;
     } else {
       throw Exception('Failed to load daftar material');
@@ -87,6 +89,8 @@ class MaterialProvider extends ChangeNotifier {
 
     final response = await http.get(url);
 
+    print(response);
+
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
       final result = (jsonData['data'] as List)
@@ -99,6 +103,7 @@ class MaterialProvider extends ChangeNotifier {
                 materialName: item['material_name'],
               ))
           .toList();
+      print(result);
       _material = result;
     } else {
       throw Exception('Failed to load materials');
