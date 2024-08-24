@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/domain/material_alat_upah/src/add_material.dart';
 import 'package:ui/domain/material_alat_upah/src/get_daftar_material.dart';
+import 'package:ui/domain/subcat/get_subcat.dart';
 import 'package:ui/pages/material_alat_upah/material_input_field.dart';
 import 'package:ui/providers/material_dropdown_provider.dart';
 import 'package:ui/providers/material_provider.dart';
+import 'package:ui/providers/sub_kategori_provider.dart';
 // import 'package:ui/providers/sub_kategori_provider.dart';
 
 class MaterialForm extends StatefulWidget {
@@ -34,32 +36,36 @@ class _MaterialFormState extends State<MaterialForm> {
   @override
   void initState() {
     super.initState();
-    var result = loadData();
+    loadData();
   }
 
-  idFinder(materials, materialName) {
+  idFinder(subcats, subcatname) {
     // print(subCategories);
-    for (var material in materials) {
-      if (material.materialName == materialName) {
-        print("From idFinder : ${material.materialID}");
-        return material.materialID;
+    for (var subcat in subcats) {
+      if (subcat.subCatName == subcatname) {
+        print("From idFinder");
+        print(subcat.subCatID);
+        var result = subcat.subCatID;
+        return result;
       }
     }
   }
 
   Future<List<dynamic>> loadData() async {
-    var response = await getDaftarMaterial();
+    var response = await getSubCat();
+
     var result = response as List<dynamic>;
     context
         .read<MaterialDropdownProvider>()
-        .setDropdownState(result[0].materialName);
+        .setDropdownState(result[0].subCatName);
     return result;
   }
 
   @override
   Widget build(BuildContext context) {
-    final materialList = context.watch<MaterialProvider>().daftarMaterials;
+    final materialList = context.watch<SubKategoriProvider>().subCategories;
     var dropDownState = context.watch<MaterialDropdownProvider>().target;
+    var materialIDState = context.watch<MaterialProvider>().materialIDState;
     var dropDownvalue = '';
 
     return SizedBox(
@@ -94,13 +100,17 @@ class _MaterialFormState extends State<MaterialForm> {
                               context
                                   .read<MaterialDropdownProvider>()
                                   .setDropdownState(dropDownvalue);
+                              context
+                                  .read<MaterialProvider>()
+                                  .setMaterialIDState(
+                                      idFinder(materialList, dropDownvalue));
                             });
-                            // idFinder(materials, dropDownValue);
+                            idFinder(materialList, dropDownvalue);
                           },
                           items: materialList.map((material) {
                             return DropdownMenuItem(
-                                value: material.materialName,
-                                child: Text(material.materialName));
+                                value: material.subCatName,
+                                child: Text(material.subCatName));
                           }).toList(),
                         ))
                   ],
@@ -163,7 +173,7 @@ class _MaterialFormState extends State<MaterialForm> {
                     child: ElevatedButton.icon(
                       onPressed: () {
                         addMaterial(
-                            idFinder('a', 'a'),
+                            materialIDState,
                             satuanController.text,
                             hargaController.text,
                             areaController.text,

@@ -49,6 +49,7 @@ class MaterialProvider extends ChangeNotifier {
 
   var materialDeleteTarget = '';
   var materialEditTarget = '';
+  var materialIDState = '';
 
   Future getDaftarMaterialForTable() async {
     print('running getDaftarMaterials');
@@ -111,8 +112,9 @@ class MaterialProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future addMaterial() async {
-    print('running addMaterial');
+  Future setMaterialIDState(materialID) async {
+    print('running materialIDState');
+    materialIDState = materialID;
   }
 
   Future editMaterial() async {

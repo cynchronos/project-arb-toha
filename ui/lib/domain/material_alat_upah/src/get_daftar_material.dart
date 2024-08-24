@@ -3,9 +3,10 @@ import 'dart:convert';
 
 class DaftarMaterial {
   String listID;
+  // String materialID;
   String materialName;
+  String categoryID;
   String categoryName;
-  String materialID;
   String satuan;
   String harga;
   String area;
@@ -13,9 +14,10 @@ class DaftarMaterial {
 
   DaftarMaterial(
       {required this.listID,
+      // required this.materialID,
       required this.materialName,
+      required this.categoryID,
       required this.categoryName,
-      required this.materialID,
       required this.satuan,
       required this.harga,
       required this.area,
@@ -35,8 +37,9 @@ Future getDaftarMaterial() async {
     final result = (jsonData['data'] as List)
         .map((item) => DaftarMaterial(
               listID: item['list_id'],
-              materialID: item['material_id'],
+              // materialID: item['material_id'],
               materialName: item['material_name'],
+              categoryID: item['category_id'],
               categoryName: item['category_name'],
               satuan: item['subcat_id'],
               harga: item['harga'].toString(),
